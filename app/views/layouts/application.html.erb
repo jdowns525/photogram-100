@@ -70,6 +70,22 @@
         </li>
     </ul>
     <% end %>
+
+    </div>
+
+   <% if notice.present? %>
+      <div style="border: thin green solid; color: black">
+        <%= notice %>
+      </div>
+    <% end%>
+
+    <% if alert.present? %>
+      <div style="border: thin red solid; color: black">
+        <%= alert %>
+      </div>
+    <% end %>
+
+</div>
     <%= yield %>
   </body>
 </html>
