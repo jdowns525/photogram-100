@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+
   # Routes for the Like resource:
 
   # CREATE
@@ -89,6 +91,9 @@ Rails.application.routes.draw do
   
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
+
+  get("/users", {:controller => "users", :action => "index"})
+  get("/users/:the_username", {:controller => "users", :action => "show"})
 
   # ------------------------------
 
