@@ -1,0 +1,65 @@
+<div>
+  <div>
+    <h1>
+      List of all likes
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          Username
+        </th>
+
+        <th>
+          Private?
+        </th>
+
+        <th>
+          
+        </th>
+
+        <th>
+          
+        </th>
+
+      </tr>
+
+      <% @list_of_users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.username %>
+        </td>
+
+        <td>
+          <%= user.private %>
+        </td>
+
+        <td>
+          <form action="/insert_follow_request" method="post">
+              <input type="hidden" name="query_recipient_id" value="91">
+
+              <button>
+                Follow
+              </button>
+            </form>
+        </td>
+
+        <td>
+          <a href="/user_authentication/<%= user.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
