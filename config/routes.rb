@@ -93,7 +93,7 @@ Rails.application.routes.draw do
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
 
   get("/users", {:controller => "user_authentication", :action => "index"})
-  get("/users/:the_username", {:controller => "user_authentication", :action => "show"})
+  get("/users/:path_id", {:controller => "user_authentication", :action => "show"})
 
   # ------------------------------
 
