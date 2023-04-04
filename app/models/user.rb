@@ -19,5 +19,5 @@ class User < ApplicationRecord
   has_many(:comments, { :class_name => "Comment", :foreign_key => "photo_id", :dependent => :destroy })
   has_many(:likes, { :class_name => "Like", :foreign_key => "photo_id", :dependent => :destroy })
   has_many(:followrequests, { :class_name => "FollowRequest", :foreign_key => "recipient_id", :dependent => :destroy })
-  #belongs_to(:like_count, { :required => true, :class_name => "Photo", :foreign_key => "likes_count" })
+  belongs_to(:like_count, { :required => true, :class_name => "Photo", :foreign_key => "likes_count" })
 end
