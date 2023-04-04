@@ -36,14 +36,14 @@
   </dd>
 
   <dt>Following</dt>
-  <dd>12</dd>
+  <dd><%= @current_user.recipient_id %></dd>
 
   <dt>Edit user</dt>
   <dd>
-    <form action="/modify_user/91" method="post">
+    <form action="/modify_user/<%= @current_user.id %>" method="post">
       <label for="browser_username">Username</label>
       <input id="browser_username" type="text" name="query_username" placeholder="Enter a username..."
-        value="alice">
+        value="<%= @current_user.username %>">
 
       <label for="browser_private">Private?</label>
       <input id="browser_private" type="checkbox" name="query_private"  checked>
@@ -56,16 +56,16 @@
 <nav>
   <ul>
     <li>
-      <a href="/users/alice">Profile</a>
+      <a href="/users/<%= @current_user.username %>">Profile</a>
     </li>
     <li>
-      <a href="/users/alice/liked_photos">Liked photos</a>
+      <a href="/users/<%= @current_user.username %>/liked_photos">Liked photos</a>
     </li>
     <li>
-      <a href="/users/alice/feed">Feed</a>
+      <a href="/users/<%= @current_user.username %>/feed">Feed</a>
     </li>
     <li>
-      <a href="/users/alice/discover">Discover</a>
+      <a href="/users/<%= @current_user.username %>/discover">Discover</a>
     </li>
   </ul>
 </nav>
