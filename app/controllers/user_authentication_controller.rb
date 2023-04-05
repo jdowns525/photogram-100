@@ -1,24 +1,6 @@
 class UserAuthenticationController < ApplicationController
   # Uncomment line 3 in this file and line 5 in ApplicationController if you want to force users to sign in before any other actions.
-  #skip_before_action(:force_user_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
-  def index
-    matching_users = User.all
-
-    @list_of_users = matching_users.order({ :created_at => :desc })
-
-    render({ :template => "user_authentication/index.html.erb" })
-  end
-
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_users = User.where({ :id => the_id })
-
-    @user = matching_users.at(0)
-
-    render({ :template => "user_authentication/show.html.erb" })
-  end
-
+  # skip_before_action(:force_user_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
 
 
   def sign_in_form
@@ -60,6 +42,8 @@ class UserAuthenticationController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
+    @user.comments_count = 0
+    @user.likes_count = 0
     @user.private = params.fetch("query_private", false)
     @user.username = params.fetch("query_username")
 
@@ -84,9 +68,9 @@ class UserAuthenticationController < ApplicationController
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.comments_count = params.fetch("query_comments_count")
+    @user.likes_count = params.fetch("query_likes_count")
     @user.private = params.fetch("query_private", false)
     @user.username = params.fetch("query_username")
-    @user.likes_count = params.fetch("query_likes_count")
     
     if @user.valid?
       @user.save

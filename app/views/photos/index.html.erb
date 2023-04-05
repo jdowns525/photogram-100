@@ -36,13 +36,15 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="file" id="image" name="image" class="form-control">
       </div>
 
       <div>
         <label for="likes_count_box">
           Likes count
         </label>
+
+        <form action="/create_user" method="post" class="form-horizontal" enctype="multipart/form-data">
 
         <input type="text" id="likes_count_box" name="query_likes_count">
       </div>
