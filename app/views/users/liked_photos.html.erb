@@ -1,115 +1,105 @@
-<div>
-<h1>
+<div class="card">
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title">
       <%= @current_user.username %>
     </h1>
-
-    <dl>
-      <dt>
+  </div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">
         Private
       </dt>
-      <dd>
+      <dd class="col-sm-9">
         <%= @current_user.private %>
       </dd>
 
-      <dt>
+      <dt class="col-sm-3">
         Followers
       </dt>
-      <dd>
+      <dd class="col-sm-9">
         <%= @current_user.receivedfollowrequests.count %>
       </dd>
 
-        <dt>
-          Following
-        </dt>
-        <dd>
-          <%= @current_user.sentfollowrequests.count %>
-        </dd>
-
-              <nav>
-        <ul>
-          <li>
-            <a href="/users/<%= @current_user.username %>">Profile</a>
-          </li>
-          <li>
-            <a href="/users/<%= @current_user.username %>/liked_photos">Liked photos</a>
-          </li>
-          <li>
-            <a href="/users/<%= @current_user.username %>/feed">Feed</a>
-          </li>
-          <li>
-            <a href="/users/<%= @current_user.username %>/discover">Discover</a>
-          </li>
-        </ul>
-      </nav>
-
+      <dt class="col-sm-3">
+        Following
+      </dt>
+      <dd class="col-sm-9">
+        <%= @current_user.sentfollowrequests.count %>
+      </dd>
+    </dl>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/users/<%= @current_user.username %>">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/<%= @current_user.username %>/liked_photos">Liked photos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/<%= @current_user.username %>/feed">Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/<%= @current_user.username %>/discover">Discover</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 </div>
 
 
-<h2>Liked photos (<%= @current_user.likes.count %>) </h2>
-  <div>
-    <table border="1">
-      <tr>
 
-        <th>
-          Image
-        </th>
-
-        <th>
-          Caption
-        </th>
-
-        <th>
-          Owner
-        </th>
-
-        <th>
-          Posted
-        </th>
-
-        <th>
-          Likes
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @current_user.likes.each do |a_like| %>
-        <tr>
-
-          <td>
-            <img src="<%= a_like.photo.image %>" class="img-responsive">
-          </td>
-
-          <td>
-            <%= a_like.photo.caption %>
-          </td>
-
-          <td>
-            <%= a_like.photo.owner.username %>
-          </td>
-
-          <td>
-            <%= time_ago_in_words(a_like.photo.created_at) %> ago
-          </td>
-          <td>
-            <%= a_like.photo.likes_count %>
-          </td>
-
-<% if @current_user != nil %>
-          <td>
-            <a href="/photos/<%= a_like.photo.id %>">
-              Show details
-            </a>
-          </td>
-          <% else %>
-          <td>
-            <a href="/user_sign_in">
-              Show details
-            </a>
-          </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
+<div class="container my-5">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Liked photos (<%= @current_user.likes.count %>)</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Caption</th>
+              <th>Owner</th>
+              <th>Posted</th>
+              <th>Likes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @current_user.likes.each do |a_like| %>
+            <tr>
+              <td>
+                <img src="<%= a_like.photo.image %>" class="img-fluid">
+              </td>
+              <td><%= a_like.photo.caption %></td>
+              <td><%= a_like.photo.owner.username %></td>
+              <td><%= time_ago_in_words(a_like.photo.created_at) %> ago</td>
+              <td><%= a_like.photo.likes_count %></td>
+              <td>
+                <% if @current_user != nil %>
+                <a href="/photos/<%= a_like.photo.id %>">
+                  Show details
+                </a>
+                <% else %>
+                <a href="/user_sign_in">
+                  Show details
+                </a>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
+</div>
