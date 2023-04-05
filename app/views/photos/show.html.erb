@@ -10,42 +10,42 @@
           Image
         </dt>
         <dd>
-          <img src="<%= @the_photo.image %>">
+          <img src="<%= @photo.image %>">
         </dd>
 
         <dt>
           Caption
         </dt>
         <dd>
-          <%= @the_photo.caption %>
+          <%= @photo.caption %>
         </dd>
 
         <dt>
           Owner
         </dt>
         <dd>
-          <%= @the_photo.owner.username %>
+          <%= @photo.owner.username %>
         </dd>
 
         <dt>
           Posted
         </dt>
         <dd>
-          <%= time_ago_in_words(@the_photo.created_at) %> ago
+          <%= time_ago_in_words(@photo.created_at) %> ago
         </dd>
 
         <dt>
           Likes count
         </dt>
         <dd>
-          <%= @the_photo.likes_count %>
+          <%= @photo.likes_count %>
         </dd>
 
         <dt>
           Comments count
         </dt>
         <dd>
-          <%= @the_photo.comments.count %>
+          <%= @photo.comments.count %>
         </dd>
 
         <dt>
@@ -53,7 +53,7 @@
         </dt>
         <dd>
 
-          <% @the_photo.likes.each do |like_user| %>
+          <% @photo.likes.each do |like_user| %>
             <%= like_user.fan.username %>
           <% end %>
         </dd>
@@ -61,7 +61,7 @@
         <dt>
           Add a fan
         </dt>
-        <% like_check = @the_photo.likes.where({ :fan_id => @current_user.id }).first %>
+        <% like_check = @photo.likes.where({ :fan_id => @current_user.id }).first %>
         <dd>
 
           <% if like_check != nil %>
@@ -74,7 +74,7 @@
 
         <input type="hidden" id="fan_id_box" name="query_fan_id" value="<%= @current_user.id %>">
 
-        <input type="hidden" id="photo_id_box" name="query_photo_id" value="<%= @the_photo.id %>">
+        <input type="hidden" id="photo_id_box" name="query_photo_id" value="<%= @photo.id %>">
 
 
       <button>
@@ -83,12 +83,12 @@
           <% end %>
         </dd>
 
-        <% if @current_user.id == @the_photo.owner_id %>
+        <% if @current_user.id == @photo.owner_id %>
           <dt>
             Edit photo
           </dt>
           <dd>
-            <form action="/modify_photo/<%= @the_photo.id %>"  method="post" enctype="multipart/form-data">
+            <form action="/modify_photo/<%= @photo.id %>"  method="post" enctype="multipart/form-data">
               <label for="image">
                 Image
               </label>
@@ -99,7 +99,7 @@
                 Caption
               </label>
 
-              <textarea id="caption_box" name="query_caption"><%= @the_photo.caption %></textarea>
+              <textarea id="caption_box" name="query_caption"><%= @photo.caption %></textarea>
               <button>
                 Update photo
               </button>
@@ -110,7 +110,7 @@
             Delete photo
           </dt>
           <dd>
-            <a href="/delete_photo/<%= @the_photo.id %>">
+            <a href="/delete_photo/<%= @photo.id %>">
               Delete this photo
             </a>
           </dd>
@@ -136,7 +136,7 @@
         </tr>
 
         <tr>
-          <% @the_photo.comments.each do |comment| %>
+          <% @photo.comments.each do |comment| %>
             <td>
               <%= comment.author.username %>
             </td>
@@ -169,7 +169,7 @@
 
         <textarea id="body_box" name="query_body" rows="3" placeholder="Enter a comment..."></textarea>
 
-        <input type="hidden" id="photo_id_box" name="query_photo_id" value="<%= @the_photo.id %>">
+        <input type="hidden" id="photo_id_box" name="query_photo_id" value="<%= @photo.id %>">
 
                 <input type="hidden" id="author_id_box" name="query_author_id">
 

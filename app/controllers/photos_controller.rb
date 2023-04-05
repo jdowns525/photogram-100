@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
 
     matching_photos = Photo.where({ :id => the_id })
 
-    @the_photo = matching_photos.at(0)
+    @photo = matching_photos.at(0)
 
     if @current_user == nil
       redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
@@ -24,45 +24,45 @@ class PhotosController < ApplicationController
   def create
     
 
-    the_photo = Photo.new
-    the_photo.caption = params.fetch("query_caption")
-    the_photo.comments_count = 0
-    the_photo.image = params.fetch(:image)
-    the_photo.likes_count = 0
-    the_photo.owner_id = @current_user.id
+    photo = Photo.new
+    photo.caption = params.fetch("query_caption")
+    photo.comments_count = 0
+    photo.image = params.fetch(:image)
+    photo.likes_count = 0
+    photo.owner_id = @current_user.id
 
-    if the_photo.valid?
-      the_photo.save
+    if photo.valid?
+      photo.save
       redirect_to("/photos", { :notice => "Photo created successfully." })
     else
-      redirect_to("/photos", { :alert => the_photo.errors.full_messages.to_sentence })
+      redirect_to("/photos", { :alert => photo.errors.full_messages.to_sentence })
     end
 
   end
 
   def update
     the_id = params.fetch("path_id")
-    the_photo = Photo.where({ :id => the_id }).at(0)
+    photo = Photo.where({ :id => the_id }).at(0)
 
-    the_photo.caption = params.fetch("query_caption")
-    the_photo.comments_count = params.fetch("query_comments_count")
-    the_photo.image = params.fetch("query_image")
-    the_photo.likes_count = params.fetch("query_likes_count")
-    the_photo.owner_id = params.fetch("query_owner_id")
+    photo.caption = params.fetch("query_caption")
+    photo.comments_count = params.fetch("query_comments_count")
+    photo.image = params.fetch("query_image")
+    photo.likes_count = params.fetch("query_likes_count")
+    photo.owner_id = params.fetch("query_owner_id")
 
-    if the_photo.valid?
-      the_photo.save
-      redirect_to("/photos/#{the_photo.id}", { :notice => "Photo updated successfully."} )
+    if photo.valid?
+      photo.save
+      redirect_to("/photos/#{photo.id}", { :notice => "Photo updated successfully."} )
     else
-      redirect_to("/photos/#{the_photo.id}", { :alert => the_photo.errors.full_messages.to_sentence })
+      redirect_to("/photos/#{photo.id}", { :alert => photo.errors.full_messages.to_sentence })
     end
   end
 
   def destroy
     the_id = params.fetch("path_id")
-    the_photo = Photo.where({ :id => the_id }).at(0)
+    photo = Photo.where({ :id => the_id }).at(0)
 
-    the_photo.destroy
+    photo.destroy
 
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
   end
