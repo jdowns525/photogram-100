@@ -1,59 +1,51 @@
-<div class="card">
-<div class="card">
-  <div class="card-header">
-    <h1 class="card-title">
-      <%= @current_user.username %>
-    </h1>
-  </div>
-  <div class="card-body">
-    <dl class="row">
-      <dt class="col-sm-3">
-        Private
-      </dt>
-      <dd class="col-sm-9">
-        <%= @current_user.private %>
-      </dd>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">
+        <%= @current_user.username %>
+      </h1>
+    </div>
 
-      <dt class="col-sm-3">
-        Followers
-      </dt>
-      <dd class="col-sm-9">
-        <%= @current_user.receivedfollowrequests.count %>
-      </dd>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">
+          Private
+        </dt>
+        <dd class="col-sm-9">
+          <%= @current_user.private %>
+        </dd>
 
-      <dt class="col-sm-3">
-        Following
-      </dt>
-      <dd class="col-sm-9">
-        <%= @current_user.sentfollowrequests.count %>
-      </dd>
-    </dl>
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/users/<%= @current_user.username %>">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/<%= @current_user.username %>/liked_photos">Liked photos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/<%= @current_user.username %>/feed">Feed</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/<%= @current_user.username %>/discover">Discover</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-</div>
+        <dt class="col-sm-3">
+          Followers
+        </dt>
+        <dd class="col-sm-9">
+          <%= @current_user.receivedfollowrequests.count %>
+        </dd>
+
+        <dt class="col-sm-3">
+          Following
+        </dt>
+        <dd class="col-sm-9">
+          <%= @current_user.sentfollowrequests.count %>
+        </dd>
+      </dl>
+
+      <nav>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= @current_user.username %>">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= @current_user.username %>/liked_photos">Liked photos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= @current_user.username %>/feed">Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= @current_user.username %>/discover">Discover</a>
+          </li>
+        </ul>
+      </nav>
 
 
 
