@@ -10,27 +10,36 @@
     <!-- Make it responsive to small screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
 
   <body>
-
-    
-  <% if @current_user == nil %>
-   <ul>
+    <ul>
       <li>
         <a href="/users">
           All users
         </a>
       </li>
-      
+
       <li>
         <a href="/photos">
           All public photos
         </a>
       </li>
 
+      <% if @current_user != nil%>
+        <li>
+          <a href="/edit_user_profile">
+            <%= @current_user.username %>
+          </a>
+        </li>
+
+        <li>
+          <a href="/user_sign_out">
+            Sign out
+          </a>
+        </li>
+      <% else %>
         <li>
           <a href="/user_sign_in">
             Sign in
@@ -42,51 +51,15 @@
             Sign up
           </a>
         </li>
+      <% end %>
+
     </ul>
-    <% else %>
-       <ul>
-      <li>
-        <a href="/users">
-          All users
-        </a>
-      </li>
-      
-      <li>
-        <a href="/photos">
-          All public photos
-        </a>
-      </li>
 
-        <li>
-          <a href="/edit_user_profile">
-            <%= @current_user.username %>
-          </a>
-         
-        </li>
-
-        <li>
-          <a href="/user_sign_out">
-            Sign out
-          </a>
-        </li>
-    </ul>
-    <% end %>
-
+    <div>
+      <%= alert %>
+      <%= notice %>
     </div>
 
-   <% if notice.present? %>
-      <div style="border: thin green solid; color: black">
-        <%= notice %>
-      </div>
-    <% end%>
-
-    <% if alert.present? %>
-      <div style="border: thin red solid; color: black">
-        <%= alert %>
-      </div>
-    <% end %>
-
-</div>
     <%= yield %>
   </body>
 </html>
