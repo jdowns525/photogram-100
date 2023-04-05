@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
-  get("/", { :controller => "user_authentication", :action => "index" })
+
+  get("/", { :controller => "application", :action => "index" }) 
+
+  get("/users", { :controller => "application", :action => "index" })
+  
+  get("/users/:path_username", { :controller => "application", :action => "show" })
+
+  get("/users/:path_username/liked_photos", { :controller => "application", :action => "liked_photos" })
+
+  get("/users/:path_username/feed", { :controller => "application", :action => "feed" })
+
+  get("/users/:path_username/discover", { :controller => "application", :action => "discover" })
+
 
   # Routes for the Like resource:
 
@@ -17,25 +29,6 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_like/:path_id", { :controller => "likes", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Comment resource:
-
-  # CREATE
-  post("/insert_comment", { :controller => "comments", :action => "create" })
-          
-  # READ
-  get("/comments", { :controller => "comments", :action => "index" })
-  
-  get("/comments/:path_id", { :controller => "comments", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_comment/:path_id", { :controller => "comments", :action => "update" })
-  
-  # DELETE
-  get("/delete_comment/:path_id", { :controller => "comments", :action => "destroy" })
 
   #------------------------------
 
@@ -58,6 +51,25 @@ Rails.application.routes.draw do
 
   #------------------------------
 
+  # Routes for the Comment resource:
+
+  # CREATE
+  post("/insert_comment", { :controller => "comments", :action => "create" })
+          
+  # READ
+  get("/comments", { :controller => "comments", :action => "index" })
+  
+  get("/comments/:path_id", { :controller => "comments", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_comment/:path_id", { :controller => "comments", :action => "update" })
+  
+  # DELETE
+  get("/delete_comment/:path_id", { :controller => "comments", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Photo resource:
 
   # CREATE
@@ -75,6 +87,8 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_photo/:path_id", { :controller => "photos", :action => "destroy" })
 
+  
+
   #------------------------------
 
   # Routes for the User account:
@@ -91,9 +105,6 @@ Rails.application.routes.draw do
   
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
-
-  get("/users", {:controller => "user_authentication", :action => "index"})
-  get("/users/:path_id", {:controller => "user_authentication", :action => "show"})
 
   # ------------------------------
 
