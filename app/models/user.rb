@@ -29,4 +29,3 @@ has_many  :receivedfollowrequests, { :class_name => "FollowRequest", :foreign_ke
 
 has_many  :sentfollowrequests, { :class_name => "FollowRequest", :foreign_key => "sender_id", :dependent => :destroy }
 end
-
