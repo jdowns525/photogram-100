@@ -1,4 +1,4 @@
-# Photogram Final
+# PicGrid
 
 Welcome to our photogram app! 
 
